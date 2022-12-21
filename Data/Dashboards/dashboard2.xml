@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Multicorp Dashbboard" />
+  <DataSources>
+    <ExcelDataSource Name="Excel Data Source" ComponentName="excelDataSource1" ConnectionName="excelDataConnection">
+      <Options Type="DevExpress.DataAccess.Excel.ExcelSourceOptions" SkipEmptyRows="true" UseFirstRowAsHeader="true" SkipHiddenColumns="true" SkipHiddenRows="true">
+        <ImportSettings Type="DevExpress.DataAccess.Excel.ExcelWorksheetSettings" WorksheetName="Multicorporation_SampleData" />
+      </Options>
+      <Schema />
+      <ResultSchema />
+    </ExcelDataSource>
+  </DataSources>
+  <Items>
+    <Chart ComponentName="chartDashboardItem1" Name="Yearly revenue" DataSource="excelDataSource1">
+      <DataItems>
+        <Measure DataMember="Branch Yearly_Revenue ($)" DefaultId="DataItem0" />
+        <Dimension DataMember="Country" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Grid ComponentName="gridDashboardItem1" Name="Employees" DataSource="excelDataSource1">
+      <DataItems>
+        <Dimension DataMember="FirstName" DefaultId="DataItem0" />
+        <Dimension DataMember="LastName" DefaultId="DataItem1" />
+        <Dimension DataMember="Role" DefaultId="DataItem2" />
+        <Dimension DataMember="Country" DefaultId="DataItem3" />
+        <Dimension DataMember="Branch Level" DefaultId="DataItem4" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem3" />
+        </GridDimensionColumn>
+      </GridColumns>
+      <SparklineArgument DefaultId="DataItem4" />
+      <GridOptions />
+      <ColumnFilterOptions />
+    </Grid>
+    <Card ComponentName="cardDashboardItem1" Name="Cards 1" ShowCaption="false" DataSource="excelDataSource1">
+      <DataItems>
+        <Dimension DataMember="Country" DefaultId="DataItem2" />
+        <Measure DataMember="Branch Yearly_Revenue ($)" DefaultId="DataItem0" />
+        <Measure DataMember="Branch Monthly Revenue ($)" DefaultId="DataItem1" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem2" />
+      </SeriesDimensions>
+      <Card>
+        <ActualValue DefaultId="DataItem0" />
+        <TargetValue DefaultId="DataItem1" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <LayoutTemplate Type="Stretched">
+          <TopValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <MainValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="Subtitle" DimensionIndex="0" />
+          <BottomValue1 Visible="true" ValueType="PercentVariation" DimensionIndex="0" />
+          <BottomValue2 Visible="true" ValueType="AbsoluteVariation" DimensionIndex="0" />
+          <DeltaIndicator Visible="true" />
+          <Sparkline Visible="true" />
+        </LayoutTemplate>
+      </Card>
+    </Card>
+    <ChoroplethMap ComponentName="choroplethMapDashboardItem1" Name="Choropleth Map 1" ShowCaption="false" DataSource="excelDataSource1" AttributeName="NAME">
+      <DataItems>
+        <Dimension DataMember="Branch Level" DefaultId="DataItem0" />
+        <Dimension DataMember="Country" DefaultId="DataItem3" />
+        <Measure DataMember="Branch Monthly Revenue ($)" DefaultId="DataItem1" />
+        <Measure DataMember="Branch Level" DefaultId="DataItem2" />
+      </DataItems>
+      <ViewArea TopLatitude="83.64513000000001" BottomLatitude="-55.61182999999996" LeftLongitude="-179.99999999999997" CenterPointLatitude="44.08908074480383" CenterPointLongitude="10.098071356993813" />
+      <MapLegend />
+      <WeightedLegend />
+      <TooltipMeasures>
+        <TooltipMeasure DefaultId="DataItem2" />
+      </TooltipMeasures>
+      <AttributeDimension DefaultId="DataItem3" />
+      <Maps>
+        <ValueMap>
+          <Value DefaultId="DataItem1" />
+          <UniformScale />
+        </ValueMap>
+      </Maps>
+    </ChoroplethMap>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutGroup Orientation="Vertical">
+        <LayoutGroup>
+          <LayoutItem DashboardItem="chartDashboardItem1" />
+          <LayoutItem DashboardItem="gridDashboardItem1" />
+        </LayoutGroup>
+        <LayoutGroup>
+          <LayoutItem DashboardItem="cardDashboardItem1" />
+          <LayoutItem DashboardItem="choroplethMapDashboardItem1" />
+        </LayoutGroup>
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>
