@@ -21,7 +21,7 @@ builder.Services.AddMvc();
 
 
 // save dashaboards to sql database.
-builder.Services.AddScoped<DashboardConfigurator>((IServiceProvider serviceProvider) =>
+/* builder.Services.AddScoped<DashboardConfigurator>((IServiceProvider serviceProvider) =>
 {
 
     DashboardConfigurator configurator = new DashboardConfigurator();
@@ -45,36 +45,36 @@ builder.Services.AddScoped<DashboardConfigurator>((IServiceProvider serviceProvi
 
 
 });
-
+*/
 
 
 
 //***in file storage configuration ***
 
-//builder.Services.AddScoped<DashboardConfigurator>((IServiceProvider serviceProvider) =>
-//{
+builder.Services.AddScoped<DashboardConfigurator>((IServiceProvider serviceProvider) =>
+{
    
-//    DashboardConfigurator configurator = new DashboardConfigurator();
+    DashboardConfigurator configurator = new DashboardConfigurator();
 
-//    // Create and configure a dashboard storage for excel.
-//    DashboardFileStorage dashboardFileStorage = new DashboardFileStorage(fileProvider.GetFileInfo("Data/Dashboards").PhysicalPath);
+    // Create and configure a dashboard storage for excel.
+    DashboardFileStorage dashboardFileStorage = new DashboardFileStorage(fileProvider.GetFileInfo("Data/Dashboards").PhysicalPath);
     
-//    // Create and configure a data source storage for excel.
-//    DataSourceInMemoryStorage dataSourceStorage = new DataSourceInMemoryStorage();
-//    ExcelDataSourceConfigurator.ConfigureDataSource(configurator, dataSourceStorage, fileProvider);
+   // Create and configure a data source storage for excel.
+    DataSourceInMemoryStorage dataSourceStorage = new DataSourceInMemoryStorage();
+   ExcelDataSourceConfigurator.ConfigureDataSource(configurator, dataSourceStorage, fileProvider);
 //    //dataSourceStorage.RegisterDataSource("excelDataSource", excelDataSource.SaveToXml());
 
-//    // Register the storage for the Web Dashboard.
-//    configurator.SetDataSourceStorage(dataSourceStorage);
+    // Register the storage for the Web Dashboard.
+    configurator.SetDataSourceStorage(dataSourceStorage);
 
 
-//    //save and open as xml
-//    configurator.SetDashboardStorage(new DashboardFileStorage(fileProvider.GetFileInfo("Data/Dashboards").PhysicalPath));
-//    configurator.SetConnectionStringsProvider(new DashboardConnectionStringsProvider(configuration));
-//    return configurator;
+    //save and open as xml
+    configurator.SetDashboardStorage(new DashboardFileStorage(fileProvider.GetFileInfo("Data/Dashboards").PhysicalPath));
+  configurator.SetConnectionStringsProvider(new DashboardConnectionStringsProvider(configuration));
+  return configurator;
 
     
-//});
+});
 
 
 
